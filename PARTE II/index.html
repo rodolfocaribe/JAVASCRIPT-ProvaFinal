@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Rodolfo Cardoso Ribeiro">
+    <title>Exercício Parte 2</title>
+</head>
+<body>
+<form>
+    <label>Nome: </label>
+    <input type="text" name="nome" placeholder="Digite seu nome: ">
+    <label>Sobrenome: </label>
+    <input type="text" name="sobrenome" placeholder="Digite seu sobrenome: ">
+    <select name="sexo">
+        <option value="masculino">Masculino</option>
+        <option value="feminino">Feminino</option>
+    </select>
+    <input type="button" value="Enviar" onclick="btnEnviar()">
+</form>
+    <script>
+        function btnEnviar() {
+            var nome = document.getElementsByName("nome")[0].value;
+            // Trim
+            nome = nome.trim();
+            var sobrenome = document.getElementsByName("sobrenome")[0].value;
+            // Trim
+            sobrenome = sobrenome.trim();
+            var sexo = document.getElementsByName("sexo")[0].value;
+
+            // Verificar se a primeira letra é maiúscula
+            var regexPrimeiraLetra = /^[A-ZÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ]/;
+            if (!regexPrimeiraLetra.test(nome)) {
+                alert("A primeira letra do nome deve ser maiúscula!");
+                return;
+            }
+
+            // Verificar se o nome tem apenas uma palavra SEM USAR REGEX
+            var nomeArray = nome.split(" ");
+            if (nomeArray.length > 1) {
+                alert("O nome deve conter apenas uma palavra!");
+                return;
+            }
+            // /^[A-Z][a-z]{2,19}(\s[A-Z][a-z]{2,19})?$/
+            var regexCompleto = /^[A-ZÀ-Ú][a-zà-ú]{2,19}(?:\s[A-ZÀ-Ú][a-zà-ú]{2,19})?$/;
+            if (!regexCompleto.test(sobrenome)) {
+                alert("O sobrenome deve conter de 1 a 2 sobrenomes separados por um único espaço em branco (o(s) sobrenome(s) deverá(ão) começar com uma letra maiúscula). Cada sobrenome deverá conter entre 3 a 20 caracteres.");
+                return;
+            }
+
+            console.log("Nome: " + nome + " Sobrenome: " + sobrenome);
+            // Guardar nome e sobrenome no localStorage
+            localStorage.setItem("nome", nome);
+            localStorage.setItem("sobrenome", sobrenome);
+
+            // Validar sexo
+            if (sexo === "masculino") {
+                window.location.href = "masculino.html";
+            } else {
+                // Passar os dados por GET
+                window.location.href = "feminino.html?nome=" + nome + "&sobrenome=" + sobrenome;
+            }
+        }
+    </script>
+</body>
+
+</html>

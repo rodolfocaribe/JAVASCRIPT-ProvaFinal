@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Rodolfo Cardoso Ribeiro">
+    <title>Feminino</title>
+</head>
+<body>
+<label>Nome completo: </label>
+<input type="text" id="nomeCompleto">
+<br>
+<p id="nomeCompletoParagrafo">Nome completo: </p>
+
+
+<script>
+    var nome = localStorage.getItem("nome");
+    var sobrenome = localStorage.getItem("sobrenome");
+    // Verificar se o nome e sobrenome estão vazios
+    if (nome == null || sobrenome == null) {
+        // Pegar os dados do GET
+        var url = new URL(window.location.href);
+        nome = url.searchParams.get("nome");
+        sobrenome = url.searchParams.get("sobrenome");
+    }
+    document.getElementById("nomeCompleto").value = nome + " " + sobrenome;
+    document.getElementById("nomeCompletoParagrafo").innerHTML = "Nome completo: " + nome + " " + sobrenome;
+</script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Rodolfo Cardoso Ribeiro">
+    <title>Exercício Parte 1</title>
+</head>
+<body>
+    <form>
+        <input type="text" name="texto"  placeholder="Digite seu seu texto: ">
+        <input type="button" value="Entrar" onclick="btnCalcular()">
+    </form>
+    <div id="resultado"></div>
+    <script>
+        function btnCalcular() {
+            var texto = document.getElementsByName("texto")[0].value;
+            // Fazer um trim no texto 
+            texto = texto.trim();
+            if (texto === "") {
+                alert("Digite seu texto!");
+            } else {
+                var qtdCaracteres = texto.length;
+                var primeiraPalavra = texto.split(" ")[0];
+                var ultimaPalavra = texto.split(" ")[texto.split(" ").length - 1];
+                var qtdPalavras = texto.split(" ").length;
+
+                // Adicionar os resultados a div resultado
+                document.getElementById("resultado").innerHTML = "Quantidade de caracteres = " + qtdCaracteres + "<br>" +
+                    "Primeira palavra do texto = " + primeiraPalavra + "<br>" +
+                    "Última palavra do texto = " + ultimaPalavra + "<br>" +
+                    "Quantidade de palavras contidas no texto = " + qtdPalavras;
+                
+            }
+        }
+    </script>
+</body>
+</html>

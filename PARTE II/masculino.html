@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Rodolfo Cardoso Ribeiro">
+    <title>Masculino</title>
+</head>
+<body>
+<input type="button" value="Mario" onclick="btnMario()">
+<input type="button" value="Luigi" onclick="btnLuigi()">
+<br>
+
+<img src="img/mario.gif" id="imgPersonagem">
+
+<div id="contadorMario">Contador do Mario: 0</div>
+<div id="contadorLuigi">Contador do Luigi: 0</div>
+
+<script>
+    var contadorMario = 0;
+    var contadorLuigi = 0;
+
+    function btnMario() {
+        document.getElementById("imgPersonagem").src = "img/mario.gif";
+    }
+
+    function btnLuigi() {
+        document.getElementById("imgPersonagem").src = "img/luigi.gif";
+    }
+
+    document.getElementById("imgPersonagem").addEventListener("click", function() {
+        if (document.getElementById("imgPersonagem").src.includes("img/mario.gif")) {
+            contadorMario++;
+            document.getElementById("contadorMario").innerHTML = "Contador do Mario: " + contadorMario;
+        } else {
+            contadorLuigi++;
+            document.getElementById("contadorLuigi").innerHTML = "Contador do Luigi: " + contadorLuigi;
+        }
+    });
+</script>
+</body>
+</html>
